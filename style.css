@@ -776,6 +776,93 @@ a {
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Project background themes */
+
+/* CI/CD Pipeline — pulsing glow background */
+.mock-content.theme-cicd {
+    background: linear-gradient(135deg, rgba(0, 229, 160, 0.12) 0%, rgba(0, 120, 212, 0.18) 50%, rgba(0, 229, 160, 0.08) 100%);
+    animation: cicdGlow 4s ease-in-out infinite;
+}
+
+@keyframes cicdGlow {
+    0%, 100% {
+        background: linear-gradient(135deg, rgba(0, 229, 160, 0.12) 0%, rgba(0, 120, 212, 0.18) 50%, rgba(0, 229, 160, 0.08) 100%);
+        box-shadow: inset 0 0 30px rgba(0, 229, 160, 0.05);
+    }
+    50% {
+        background: linear-gradient(135deg, rgba(0, 120, 212, 0.2) 0%, rgba(0, 229, 160, 0.2) 50%, rgba(0, 120, 212, 0.15) 100%);
+        box-shadow: inset 0 0 60px rgba(0, 229, 160, 0.1);
+    }
+}
+
+/* Portfolio — purple/blue gradient with code watermark */
+.mock-content.theme-portfolio {
+    background: linear-gradient(145deg, rgba(138, 43, 226, 0.18) 0%, rgba(0, 120, 212, 0.15) 50%, rgba(0, 229, 160, 0.1) 100%);
+}
+
+.mock-content.theme-portfolio::before {
+    content: '< / >';
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(138, 43, 226, 0.12);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    animation: codePulse 4s ease-in-out infinite;
+}
+
+@keyframes codePulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Azure VM — blue with pulsing orbit rings */
+.mock-content.theme-azure {
+    background: linear-gradient(135deg, rgba(0, 120, 212, 0.2) 0%, rgba(0, 78, 152, 0.12) 50%, rgba(0, 229, 160, 0.1) 100%);
+}
+
+.mock-content.theme-azure::before {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 2px dashed rgba(0, 120, 212, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: azurePulse 3s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.mock-content.theme-azure::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 2px dashed rgba(0, 229, 160, 0.25);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: azurePulse 3s ease-in-out 1.5s infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes azurePulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
 }
 
 .mock-line {
@@ -1216,6 +1303,19 @@ a {
 .cert-card p {
     font-size: 0.8rem;
     color: var(--text-muted);
+}
+
+.cert-link-hint {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.cert-card:hover .cert-link-hint {
+    opacity: 1;
 }
 
 /* ===== Contact ===== */
