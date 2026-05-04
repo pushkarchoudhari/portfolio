@@ -558,6 +558,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     color: var(--text-muted);
     position: relative;
 }
